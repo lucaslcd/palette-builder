@@ -1,0 +1,40 @@
+:host {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-areas: "title title" "left right";
+    gap: 2em;
+    padding: 1em;
+    height: 100%;
+}
+
+h1 {
+    grid-area: title;
+}
+
+.col-palette {
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1em 2em;
+    overflow-x: hidden;
+    overflow-y:auto;
+}
+
+.col-colors {
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    padding: 1em 2em;
+    overflow-x: hidden;
+    overflow-y:auto;
+}
+
+pbu-color-wheel {
+    margin: 2em 0;
+}
+
+pbu-color-form {
+    min-width:300px;
+}
