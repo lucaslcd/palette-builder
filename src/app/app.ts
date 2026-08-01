@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { ColorWheel } from './components/color-wheel/color-wheel';
 import { ColorForm } from './components/color-form/color-form';
-import { PaletteForm } from './components/palette-form/palette-form';
+import { PaletteExport } from './components/palette-export/palette-export';
 
 @Component({
   selector: 'app-root',
-  imports: [ColorWheel, ColorForm, PaletteForm],
+  imports: [ColorWheel, ColorForm, PaletteExport],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

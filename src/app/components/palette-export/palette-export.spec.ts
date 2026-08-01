@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaletteForm } from './palette-form';
+import { PaletteExport } from './palette-export';
 
-describe('PaletteForm', () => {
-  let component: PaletteForm;
-  let fixture: ComponentFixture<PaletteForm>;
+describe('PaletteExport', () => {
+  let component: PaletteExport;
+  let fixture: ComponentFixture<PaletteExport>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PaletteForm],
+      imports: [PaletteExport],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PaletteForm);
+    fixture = TestBed.createComponent(PaletteExport);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

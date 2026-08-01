@@ -1,4 +1,5 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'pbu-color-pointer',
@@ -12,11 +13,13 @@ import { Component, computed, input } from '@angular/core';
   }
 })
 export class ColorPointer {
+  utilsService = inject(UtilsService)
+
   hue = input.required<number>()
   saturation = input.required<number>()
   light = input.required<number>()
 
-  color = computed(()=>`hsl(${this.hue()}, ${this.saturation() * 100}%, ${this.light() * 100}%)`)
+  color = computed(()=>this.utilsService.formatHsl(this.hue(), this.saturation(), this.light()))
 
   position = computed<number[]>(()=>{
     const angleRadians = Math.PI / 180 * this.hue(),

@@ -5,6 +5,7 @@
     grid-template-rows: min-content;
 
     --mat-toolbar-container-background-color: transparent;
+    --mat-toolbar-standard-height: 34px;
 }
 
 .color {
@@ -12,8 +13,6 @@
     padding: 1em 2em;
     border-radius: 1em;
     padding-bottom:1em;
-}
-.color + .color{
 }
 
 .color mat-toolbar {

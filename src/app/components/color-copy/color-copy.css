@@ -1,0 +1,13 @@
+:host {
+    height: 5vw;
+    width: 5vw;
+    display: block;
+}
+
+button {
+    height:100%;
+    width: 100%;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}

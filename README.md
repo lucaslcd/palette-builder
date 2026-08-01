@@ -60,4 +60,4 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Deploy on github pages
 
-run deploy --cname=palette-builder.lucasdrapeau.ca
+ng deploy --cname=palette-builder.lucasdrapeau.ca

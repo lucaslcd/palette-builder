@@ -19,7 +19,6 @@ export class ColorWheel implements AfterViewInit {
 
   stateForm = this.stateService.stateForm
 
-  saturation = computed(()=>this.stateService.params().saturation)
   colors = computed(()=>this.stateService.params().colors)
 
   radius = signal<number>(0)

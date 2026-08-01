@@ -2,6 +2,6 @@
 
 @for(color of colors(); track $index) {
     @for(shade of color.shades; track $index) {
-        <pbu-color-pointer [hue]="color.hue" [saturation]="saturation()" [light]="shade"></pbu-color-pointer>
+        <pbu-color-pointer [hue]="color.hue" [saturation]="color.saturation" [light]="shade"></pbu-color-pointer>
     }
 }

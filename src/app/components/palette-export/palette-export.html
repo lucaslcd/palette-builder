@@ -1,0 +1,9 @@
+<div class="color-list">
+@for(color of colors(); track $index) {
+    <div class="shade-list">
+    @for(shade of color.shades; track $index) {
+        <pbu-color-copy  [hue]="color.hue" [saturation]="color.saturation" [light]="shade"></pbu-color-copy>
+    }
+    </div>
+}
+</div>
