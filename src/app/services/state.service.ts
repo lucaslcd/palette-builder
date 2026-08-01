@@ -59,14 +59,18 @@ export class StateService {
         this.params.set({
             ...this.params(),
             colors: [
-                ...this.params().colors.filter((_, i)=>i != colorIndex),
-                {
-                    ...current,
-                   shades: [
-                        ...current?.shades,
-                        0.5
-                   ]
-                }
+                ...this.params().colors.map((el, i)=>{
+                    if (i != colorIndex) {
+                        return el
+                    }
+                    return {
+                        ...current,
+                        shades: [
+                                ...current?.shades,
+                                0.5
+                        ]
+                    }
+                }),
             ]
         })
     }
@@ -91,17 +95,21 @@ export class StateService {
         this.params.set({
             ...this.params(),
             colors: [
-                ...this.params().colors.filter((_, i)=>i != colorIndex),
-                {
-                   ...current,
-                   shades: [
-                        ...current?.shades.filter((_, i)=>i != shadeIndex),
-                   ]
-                }
+                ...this.params().colors.map((el, i)=>{
+                    if (i != colorIndex) {
+                        return el
+                    }
+                    return {
+                        ...current,
+                        shades: [
+                                ...current?.shades.filter((_, i)=>i != shadeIndex),
+                        ]
+                    }
+                }),
             ]
         })
     }
-
+                
     removeColor = (colorIndex: number) => {
         const current =  this.params().colors.find((_, i)=>i === colorIndex);
 
