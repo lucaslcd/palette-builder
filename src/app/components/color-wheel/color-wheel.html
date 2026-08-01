@@ -1,1 +1,7 @@
-<canvas #colorWheel width="500" height="500"></canvas>
+<canvas #colorWheel></canvas>
+
+@for(color of colors(); track $index) {
+    @for(shade of color.shades; track $index) {
+        <pbu-color-pointer [hue]="color.hue" [saturation]="saturation()" [light]="shade"></pbu-color-pointer>
+    }
+}

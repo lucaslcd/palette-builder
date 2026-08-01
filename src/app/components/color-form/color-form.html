@@ -1,11 +1,13 @@
 
-@for (color of stateForm.colors; track $index; let i = $index) {
+@for (color of stateForm.colors; track $index; let ci = $index) {
 <div class="color">
     <mat-toolbar>
-        <h2>Color {{i}}</h2>
-        <button matIconButton aria-label="Remove color">
-            <mat-icon>remove</mat-icon>
-        </button>
+        <h2>Color {{ci}}</h2>
+        @if (!singleColor()) {
+            <button matIconButton aria-label="Remove color" (click)="removeColor(ci)">
+                <mat-icon>remove</mat-icon>
+            </button>
+        }
     </mat-toolbar>
     <div class="control">
         <mat-label>Hue</mat-label>
@@ -15,15 +17,15 @@
     </div>
     <div class="shades">
 
-        @for (shade of color.shades; track $index) {
-            <mat-form-field appearance="fill">
-                <button matSuffix class="top-right-icon" matIconButton aria-label="Remove shade">
+        @for (shade of color.shades; track $index; let si = $index) {
+            <mat-form-field appearance="fill" >
+                <button matSuffix class="top-right-icon" matIconButton aria-label="Remove shade" (click)="removeShade(ci,si)">
                     <mat-icon>remove</mat-icon>
                 </button>
                 <input matInput type="number" step="0.01" [formField]="shade">
             </mat-form-field>
         }
-        <button matButton aria-label="Add shade">
+        <button matButton aria-label="Add shade" (click)="addShade(ci)">
             Add shade
             <mat-icon matSuffix >add</mat-icon>
         </button>
@@ -31,7 +33,7 @@
 </div>
 }
 
-<button matButton aria-label="Add color">
+<button matButton aria-label="Add color" (click)="addColor()">
     Add color
     <mat-icon matSuffix >add</mat-icon>
 </button>

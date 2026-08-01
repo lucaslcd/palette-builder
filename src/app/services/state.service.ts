@@ -34,4 +34,75 @@ export class StateService {
             });
         }
     )
+
+    addShade = (colorIndex: number) => {
+        const current =  this.params().colors.find((_, i)=>i === colorIndex);
+
+        if(!current) {
+            return;
+        }
+
+        this.params.set({
+            ...this.params(),
+            colors: [
+                ...this.params().colors.filter((_, i)=>i != colorIndex),
+                {
+                   hue: current?.hue,
+                   shades: [
+                        ...current?.shades,
+                        0.5
+                   ]
+                }
+            ]
+        })
+    }
+
+    addColor = () => {
+        this.params.set({
+            ...this.params(),
+            colors: [
+                ...this.params().colors,
+                {
+                    hue: 15,
+                    shades: [0.25, 0.45, 0.65, 0.85]
+                }
+            ]
+        })
+    }
+
+    removeShade = (colorIndex: number, shadeIndex: number) => {
+        const current =  this.params().colors.find((_, i)=>i === colorIndex);
+
+        if(!current) {
+            return;
+        }
+
+        this.params.set({
+            ...this.params(),
+            colors: [
+                ...this.params().colors.filter((_, i)=>i != colorIndex),
+                {
+                   hue: current?.hue,
+                   shades: [
+                        ...current?.shades.filter((_, i)=>i != shadeIndex),
+                   ]
+                }
+            ]
+        })
+    }
+
+    removeColor = (colorIndex: number) => {
+        const current =  this.params().colors.find((_, i)=>i === colorIndex);
+
+        if(!current) {
+            return;
+        }
+
+        this.params.set({
+            ...this.params(),
+            colors: [
+                ...this.params().colors.filter((_, i)=>i != colorIndex)
+            ]
+        })
+    }
 }

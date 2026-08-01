@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, effect, ElementRef, inject, Signal, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, computed, effect, ElementRef, HostListener, inject, Signal, signal, ViewChild } from '@angular/core';
 import { StateService } from '../../services/state.service';
+import { ColorPointer } from '../color-pointer/color-pointer';
 
 export const COLOR_WHEEL_SATURATION = 0.6
 
 @Component({
   selector: 'pbu-color-wheel',
-  imports: [],
+  imports: [ColorPointer],
   templateUrl: './color-wheel.html',
   styleUrl: './color-wheel.css',
 })
@@ -14,10 +15,16 @@ export class ColorWheel implements AfterViewInit {
   private ctx!: CanvasRenderingContext2D | null
 
   stateService = inject(StateService)
+  hostElement = inject(ElementRef);
+
+  stateForm = this.stateService.stateForm
+
+  saturation = computed(()=>this.stateService.params().saturation)
+  colors = computed(()=>this.stateService.params().colors)
 
   radius = signal<number>(0)
-  cx = signal<number>(0)
-  cy = signal<number>(0)
+  cx = computed<number>(()=>this.radius())
+  cy = computed<number>(()=>this.radius())
 
 
   constructor() {    
@@ -25,16 +32,28 @@ export class ColorWheel implements AfterViewInit {
       this.draw(COLOR_WHEEL_SATURATION)
     })
   }
-
+  
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    this.resizeCanvas();
+  }
 
   ngAfterViewInit(): void {
     const canvas = this.canvasBinding.nativeElement
 
     this.ctx = canvas.getContext('2d')
-    this.radius.set(canvas.width / 2);
 
-    this.cx.set(this.radius());
-    this.cy.set(this.radius());
+    this.resizeCanvas();
+  }
+
+  resizeCanvas() {
+    const canvas = this.canvasBinding.nativeElement
+    const container = this.hostElement.nativeElement
+    
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+    
+    this.radius.set(canvas.width / 2);
 
     this.draw(COLOR_WHEEL_SATURATION)
   }
@@ -56,8 +75,6 @@ export class ColorWheel implements AfterViewInit {
 
       // Create a gradient running from the center (white) to the edge (pure color)
       const gradient = this.ctx.createRadialGradient(this.cx(), this.cy(), 0, this.cx(), this.cy(), this.radius());
-
-      console.log(`hsl(${angle}, ${Math.round(saturation * 100)}%, 0%)`)
       
       gradient.addColorStop(1, `hsl(${angle}, ${Math.round(saturation * 100)}%, 50%)`);
       gradient.addColorStop(0, `hsl(${angle}, ${Math.round(saturation * 100)}%, 50%)`);
@@ -66,4 +83,5 @@ export class ColorWheel implements AfterViewInit {
       this.ctx.fill();
     }
   }
+
 }
