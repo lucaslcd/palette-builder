@@ -1,0 +1,16 @@
+:host {
+    display:flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+
+.shade-list {
+    display:flex;
+    flex: 1 0 auto;
+}
+
+.shade-list * {
+    width: auto;
+    height: auto;
+    flex: 1 0 auto;
+}

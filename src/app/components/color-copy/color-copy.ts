@@ -1,11 +1,12 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { UtilsService } from '../../services/utils.service';
-import { CdkCopyToClipboard, ClipboardModule } from '@angular/cdk/clipboard';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'pbu-color-copy',
-  imports: [ClipboardModule],
+  imports: [ClipboardModule, MatTooltip],
   templateUrl: './color-copy.html',
   styleUrl: './color-copy.css',
   host: {

@@ -3,12 +3,12 @@ import { StateService } from '../../services/state.service';
 import { ColorCopy } from '../color-copy/color-copy';
 
 @Component({
-  selector: 'pbu-palette-export',
+  selector: 'pbu-color-strips',
   imports: [ColorCopy],
-  templateUrl: './palette-export.html',
-  styleUrl: './palette-export.css',
+  templateUrl: './color-strips.html',
+  styleUrl: './color-strips.css',
 })
-export class PaletteExport {
+export class ColorStrips {
   stateService = inject(StateService)
 
   colors = computed(()=>this.stateService.params().colors)

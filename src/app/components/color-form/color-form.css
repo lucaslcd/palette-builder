@@ -3,6 +3,7 @@
     gap: 1em;
     grid-template-columns: 1fr;
     grid-template-rows: min-content;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
     --mat-toolbar-container-background-color: transparent;
     --mat-toolbar-standard-height: 34px;
@@ -27,5 +28,15 @@
 
 .color mat-form-field {
     padding-right: 1em;
-    width: 9em;
+    width: 8em;
+    --mat-form-field-container-text-size: 12px;
+    --mat-icon-button-state-layer-size: 28px;
+    --mat-form-field-container-vertical-padding: 3px;
+    --mat-form-field-container-height: 32px;
+}
+
+.color mat-form-field mat-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
 }

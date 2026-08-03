@@ -1,13 +1,13 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { UtilsService } from '../../services/utils.service';
+import { ColorCopy } from '../color-copy/color-copy';
 
 @Component({
   selector: 'pbu-color-pointer',
-  imports: [],
+  imports: [ColorCopy],
   templateUrl: './color-pointer.html',
   styleUrl: './color-pointer.css',
   host: {
-    "[style.backgroundColor]": "color()",
     "[style.left]": "left()",
     "[style.top]": "top()",
   }
@@ -18,8 +18,6 @@ export class ColorPointer {
   hue = input.required<number>()
   saturation = input.required<number>()
   light = input.required<number>()
-
-  color = computed(()=>this.utilsService.formatHsl(this.hue(), this.saturation(), this.light()))
 
   position = computed<number[]>(()=>{
     const angleRadians = Math.PI / 180 * this.hue(),

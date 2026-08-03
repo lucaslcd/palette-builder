@@ -11,3 +11,13 @@ button {
     border: 0;
     cursor: pointer;
 }
+
+button:hover + .tooltip {
+    opacity: 1;
+}
+
+.tooltip {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+}

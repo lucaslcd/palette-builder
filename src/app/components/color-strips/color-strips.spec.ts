@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaletteExport } from './palette-export';
+import { ColorStrips } from './color-strips';
 
-describe('PaletteExport', () => {
-  let component: PaletteExport;
-  let fixture: ComponentFixture<PaletteExport>;
+describe('ColorStrips', () => {
+  let component: ColorStrips;
+  let fixture: ComponentFixture<ColorStrips>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PaletteExport],
+      imports: [ColorStrips],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PaletteExport);
+    fixture = TestBed.createComponent(ColorStrips);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

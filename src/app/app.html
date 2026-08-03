@@ -1,9 +1,29 @@
 <h1>Palette Builder</h1>
+
 <div class="col-palette">
-  <pbu-color-wheel></pbu-color-wheel>
-  <pbu-palette-export></pbu-palette-export>
+  <mat-select [formField]="display.color">
+    <mat-option value="wheel">Color Wheel</mat-option>
+    <mat-option value="strips">Strips</mat-option>
+  </mat-select>
+
+  @switch(display.color().value()) {
+    @case ('wheel') {
+      <pbu-color-wheel></pbu-color-wheel>
+    }
+    @case ('strips') {
+      <pbu-color-strips></pbu-color-strips>
+    }
+  }
 </div>
 
 <div class="col-colors">
-  <pbu-color-form></pbu-color-form>
+  <mat-select [formField]="display.form">
+    <mat-option value="edit">Build Palette</mat-option>
+  </mat-select>
+
+  @switch(display.form().value()) {
+    @case ('edit') {
+      <pbu-color-form></pbu-color-form>
+    }
+  }
 </div>
