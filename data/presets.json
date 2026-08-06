@@ -1,0 +1,256 @@
+[
+    {
+        "type": "default",
+        "codes": ["#e19999","#f1d0d0","#471547","#7e267e","#b53675","#d06299"],
+        "palette": {
+            "name": "Candy",
+            "colors": [
+                {
+                    "name": "Color 0",
+                    "hue": 360,
+                    "hueDiff": 0,
+                    "lockHue": false,
+                    "saturation": 0.54,
+                    "lockSaturation": false,
+                    "shades": [
+                        0.74,
+                        0.88
+                    ],
+                    "lockShade": false
+                },
+                {
+                    "name": "Color 1",
+                    "hue": 300,
+                    "hueDiff": -60,
+                    "lockHue": false,
+                    "saturation": 0.54,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.18,
+                        0.32
+                    ],
+                    "lockShade": false
+                },
+                {
+                    "name": "Color 2",
+                    "hue": 330,
+                    "hueDiff": -30,
+                    "lockHue": false,
+                    "saturation": 0.54,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.46,
+                        0.6
+                    ],
+                    "lockShade": false
+                }
+            ]
+        }
+    },
+    {
+        "type": "default",
+        "codes": ["#591c1c","#a73535","#d27070","#eabdbd","#593b1c","#a76e35","#d2a170","#ead4bd","#59591c","#a7a735","#d2d270","#eaeabd","#3b591c","#6ea735","#a1d270","#d4eabd","#1c591c","#35a735","#70d270","#bdeabd","#1c593b","#35a76e","#70d2a1","#bdead4","#1c5959","#35a7a7","#70d2d2","#bdeaea","#1c3b59","#356ea7","#70a1d2","#bdd4ea","#1c1c59","#3535a7","#7070d2","#bdbdea","#3b1c59","#6e35a7","#a170d2","#d4bdea","#591c59","#a735a7","#d270d2","#eabdea","#591c3b","#a7356e","#d270a1","#eabdd4","#3b3b3b","#6e6e6e","#a1a1a1","#d4d4d4","#000000","#ffffff"],
+        "palette": {
+            "name": "System",
+            "colors": [
+                {
+                    "name": "Color 0",
+                    "hue": 360,
+                    "hueDiff": 0,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": false,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": false
+                },
+                {
+                    "name": "Color 1",
+                    "hue": 30,
+                    "hueDiff": -330,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 2",
+                    "hue": 60,
+                    "hueDiff": -300,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 3",
+                    "hue": 90,
+                    "hueDiff": -270,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 4",
+                    "hue": 120,
+                    "hueDiff": -240,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 5",
+                    "hue": 150,
+                    "hueDiff": -210,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 6",
+                    "hue": 180,
+                    "hueDiff": -180,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 7",
+                    "hue": 210,
+                    "hueDiff": -150,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 8",
+                    "hue": 240,
+                    "hueDiff": -120,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 9",
+                    "hue": 270,
+                    "hueDiff": -90,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 10",
+                    "hue": 300,
+                    "hueDiff": -60,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 11",
+                    "hue": 330,
+                    "hueDiff": -30,
+                    "lockHue": false,
+                    "saturation": 0.52,
+                    "lockSaturation": true,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83
+                    ],
+                    "lockShade": true
+                },
+                {
+                    "name": "Color 12",
+                    "hue": 15,
+                    "hueDiff": -345,
+                    "lockHue": true,
+                    "saturation": 0,
+                    "lockSaturation": false,
+                    "shades": [
+                        0.23,
+                        0.43,
+                        0.63,
+                        0.83,
+                        0,
+                        1
+                    ],
+                    "lockShade": false
+                }
+            ]
+        }
+    }
+]
