@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>A preset for {{palette().name}} already exists</h2>
+<mat-dialog-content>
+  <p>Do you want to overwrite {{palette().name}}?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton [mat-dialog-close]="{success: false}">No</button>
+  <button matButton [mat-dialog-close]="{success: true}" cdkFocusInitial>Yes</button>
+</mat-dialog-actions>

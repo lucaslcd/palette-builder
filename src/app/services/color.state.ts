@@ -1,10 +1,9 @@
-import { computed, effect, inject, Service, signal } from '@angular/core';
+import { effect, inject, Service, signal } from '@angular/core';
 import { applyEach, disabled, form, max, min } from '@angular/forms/signals';
 import { UtilsService } from './utils.service';
-import { untracked } from '@angular/core/primitives/signals';
 
-interface StateParamsColor {
-    id: number,
+export interface ColorModel {
+    name: string,
     hue: number,
     hueDiff: number,
     lockHue: boolean,
@@ -14,24 +13,26 @@ interface StateParamsColor {
     lockShade: boolean
 }
 
-interface StateParams {
-    colors: StateParamsColor[];
+export interface PaletteModel {
+    name: string;
+    colors: ColorModel[];
 }
 
+export type ColorStateModel = PaletteModel
+
 @Service()
-export class StateService {
+export class ColorState {
     utilsService = inject(UtilsService)
 
     inc = signal<number>(0)
 
-    params = signal<StateParams>({
-        colors: [
-            this._createColor()
-        ]
+    state = signal<ColorStateModel>({
+        name: '',
+        colors: []
     })
 
     stateForm = form(
-        this.params,
+        this.state,
         (path) => {
             applyEach(path.colors, (colorPath) => {
                 applyEach(colorPath.shades, (shadePath) => {
@@ -46,20 +47,55 @@ export class StateService {
     )
 
     _ = effect(() => {
-        this._updateColors(this.params())
+        this._updateColors(this.state())
+        localStorage.setItem('currentColor', JSON.stringify(this.state())) 
     })
 
+    constructor() {
+        const current = localStorage.getItem('currentColor') || ''
+        //new palette
+        if(!current) {
+            this.reset()
+        }
+        //old
+        else {
+            const parsed = JSON.parse(current)
+            
+            this.inc.set(0)
+            this.setColor(
+                parsed.name || "unknown", 
+                (parsed.colors || []).map((el:any, i: number)=>this._createColor(i === 0, el))
+            )
+        }
+    }
+
+    setColor = (name: string, colors: ColorModel[]) => {
+        this.state.set({
+            name,
+            colors: [
+                ...colors
+            ]
+        })
+    }
+
+    reset = () => {
+        this.inc.set(0)
+        this.setColor("New Palette", [
+            this._createColor(true)
+        ])
+    }
+
     addShade = (colorIndex: number) => {
-        const current =  this.params().colors.find((_, i)=>i === colorIndex);
+        const current =  this.state().colors.find((_, i)=>i === colorIndex);
 
         if(!current) {
             return;
         }
 
-        this.params.set({
-            ...this.params(),
+        this.state.set({
+            ...this.state(),
             colors: [
-                ...this.params().colors.map((el, i)=>{
+                ...this.state().colors.map((el, i)=>{
                     if (i != colorIndex) {
                         return el
                     }
@@ -76,26 +112,26 @@ export class StateService {
     }
 
     addColor = () => {
-        this.params.set({
-            ...this.params(),
+        this.state.set({
+            ...this.state(),
             colors: [
-                ...this.params().colors,
-                this._createColor()
+                ...this.state().colors,
+                this._createColor(false)
             ]
         })
     }
 
     removeShade = (colorIndex: number, shadeIndex: number) => {
-        const current =  this.params().colors.find((_, i)=>i === colorIndex);
+        const current =  this.state().colors.find((_, i)=>i === colorIndex);
 
         if(!current) {
             return;
         }
 
-        this.params.set({
-            ...this.params(),
+        this.state.set({
+            ...this.state(),
             colors: [
-                ...this.params().colors.map((el, i)=>{
+                ...this.state().colors.map((el, i)=>{
                     if (i != colorIndex) {
                         return el
                     }
@@ -111,21 +147,21 @@ export class StateService {
     }
                 
     removeColor = (colorIndex: number) => {
-        const current =  this.params().colors.find((_, i)=>i === colorIndex);
+        const current =  this.state().colors.find((_, i)=>i === colorIndex);
 
         if(!current) {
             return;
         }
 
-        this.params.set({
-            ...this.params(),
+        this.state.set({
+            ...this.state(),
             colors: [
-                ...this.params().colors.filter((_, i)=>i != colorIndex)
+                ...this.state().colors.filter((_, i)=>i != colorIndex)
             ]
         })
     }
 
-    private _updateColors(params: StateParams) {
+    private _updateColors(params: ColorStateModel) {
         const colors = params.colors
 
         const mainColor = colors[0];
@@ -151,40 +187,26 @@ export class StateService {
         }
     }
 
-    private _createColor():StateParamsColor {
-        const firstColor = this.params?.().colors[0];
-        if (firstColor) {
-            return {
-                id: this._increment(),
-                hue: this.utilsService.addHue(firstColor.hue, 30),
-                hueDiff: 30,
-                lockHue: true,
-                saturation: firstColor.saturation,
-                lockSaturation: true,
-                shades: [
-                    ...firstColor.shades
-                ],
-                lockShade: true
-            }
+    private _createColor(first: boolean = false, data: any = {}):ColorModel {
+        const increment = () => {
+            const cur = this.inc()
+            this.inc.set(cur+1);
+            return cur;
         }
+
+        const inc = increment()
 
         return {
-            id: this._increment(),
-            hue: 15, 
-            hueDiff: 0,
-            lockHue: false,
-            saturation: 0.52,
-            lockSaturation: false,
-            shades: [
+            name: data.name || `Color ${inc}`,
+            hue: data.hue || 15, 
+            hueDiff: data.hueDiff || 0,
+            lockHue: data.lockHue || !first,
+            saturation: data.saturation || 0.52,
+            lockSaturation: data.lockSaturation || !first,
+            shades: data.shades || [
                 0.23, 0.43, 0.63, 0.83
             ],
-            lockShade: false
+            lockShade: data.lockShade || !first
         }
-    }
-
-    private _increment() {
-        const cur = this.inc()
-        this.inc.set(cur+1);
-        return cur;
     }
 }

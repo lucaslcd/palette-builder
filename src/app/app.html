@@ -1,4 +1,4 @@
-<h1>Palette Builder</h1>
+<pbu-header></pbu-header>
 
 <div class="col-palette">
   <mat-select [formField]="display.color">
@@ -19,11 +19,15 @@
 <div class="col-colors">
   <mat-select [formField]="display.form">
     <mat-option value="edit">Build Palette</mat-option>
+    <mat-option value="presets">Preset List</mat-option>
   </mat-select>
 
   @switch(display.form().value()) {
     @case ('edit') {
       <pbu-color-form></pbu-color-form>
+    }
+    @case ('presets') {
+      <pbu-preset-list></pbu-preset-list>
     }
   }
 </div>

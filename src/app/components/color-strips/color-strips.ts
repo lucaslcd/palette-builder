@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { StateService } from '../../services/state.service';
+import { ColorState } from '../../services/color.state';
 import { ColorCopy } from '../color-copy/color-copy';
 
 @Component({
@@ -9,7 +9,7 @@ import { ColorCopy } from '../color-copy/color-copy';
   styleUrl: './color-strips.css',
 })
 export class ColorStrips {
-  stateService = inject(StateService)
+  colorState = inject(ColorState)
 
-  colors = computed(()=>this.stateService.params().colors)
+  colors = computed(()=>this.colorState.state().colors)
 }

@@ -1,0 +1,9 @@
+.colors {
+    background:pink;
+    aspect-ratio: 16/9;
+    display:flex;
+    align-items: stretch;
+}
+.colors * {
+    flex:1;
+}

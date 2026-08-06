@@ -1,0 +1,17 @@
+@if(customPresets().length) {
+    <h2>Custom Presets</h2>
+}
+
+<div class="list">
+@for(preset of customPresets(); track preset.palette.name) {
+    <pbu-preset-card [preset]="preset"></pbu-preset-card>
+}
+</div>
+
+<h2>Default Presets</h2>
+
+<div class="list">
+@for(preset of defaultPresets(); track preset.palette.name) {
+    <pbu-preset-card [preset]="preset"></pbu-preset-card>
+}
+</div>

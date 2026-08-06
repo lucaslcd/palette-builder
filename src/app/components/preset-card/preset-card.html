@@ -1,0 +1,19 @@
+<mat-card class="preset-card" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>{{preset().palette.name}}</mat-card-title>
+    </mat-card-header>
+
+    <div class="colors">
+        @for(code of preset().codes; track code) {
+            <div class="color" [style.backgroundColor]="code"></div>
+        }
+    </div>
+    <!-- <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    
+    <mat-card-actions>
+        @if (preset().type === "custom") {
+            <button matButton="" (click)="deletePreset(preset())">Delete</button>
+        }
+        <button matButton (click)="loadPreset(preset())">Load Preset</button>
+    </mat-card-actions>
+</mat-card>

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, computed, effect, ElementRef, HostListener, inject, Signal, signal, ViewChild } from '@angular/core';
-import { StateService } from '../../services/state.service';
+import { ColorState } from '../../services/color.state';
 import { ColorPointer } from '../color-pointer/color-pointer';
 
 export const COLOR_WHEEL_SATURATION = 0.6
@@ -14,12 +14,12 @@ export class ColorWheel implements AfterViewInit {
   @ViewChild('colorWheel') canvasBinding!: ElementRef<HTMLCanvasElement>;
   private ctx!: CanvasRenderingContext2D | null
 
-  stateService = inject(StateService)
+  colorState = inject(ColorState)
   hostElement = inject(ElementRef);
 
-  stateForm = this.stateService.stateForm
+  stateForm = this.colorState.stateForm
 
-  colors = computed(()=>this.stateService.params().colors)
+  colors = computed(()=>this.colorState.state().colors)
 
   radius = signal<number>(0)
   cx = computed<number>(()=>this.radius())
