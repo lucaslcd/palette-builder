@@ -1,8 +1,5 @@
 <div class="header">
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matNativeControl input="text" [formField]="stateForm.name" />
-    </mat-form-field>
+    <pbu-title-edit [formField]="stateForm.name"></pbu-title-edit>
 
     <div class="spacer"></div>
 
@@ -14,7 +11,8 @@
     @for (color of stateForm.colors; track color; let ci = $index) {
         <div class="color">
             <mat-toolbar>
-                <h2>{{color.name().value()}}</h2>
+                <pbu-title-edit [formField]="color.name"></pbu-title-edit>
+
                 @if (ci > 0) {
                     <button matIconButton aria-label="Remove color" (click)="removeColor(ci)">
                         <mat-icon>remove</mat-icon>

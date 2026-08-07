@@ -1,0 +1,14 @@
+@if(!isEditing()) {
+    <h3>{{formField()().value()}}</h3>
+    <button matIconButton aria-label="Edit Field" (click)="edit()">
+        <mat-icon>edit</mat-icon>
+    </button>
+}
+@else {
+    <mat-form-field [subscriptSizing]="'dynamic'">
+        <input matNativeControl input="text" [formField]="formField()" />
+    </mat-form-field>
+    <button matIconButton aria-label="Edit Field" class="offset" (click)="edit()">
+        <mat-icon>check</mat-icon>
+    </button>
+}

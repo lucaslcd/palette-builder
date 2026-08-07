@@ -1,6 +1,7 @@
 .header {
     display:flex;
     gap: 1em;
+    margin:1em 0 2em;
 }
 
 .header .spacer {
@@ -29,6 +30,7 @@
 .color mat-toolbar {
     justify-content: space-between;
     padding: 0;
+    --mat-toolbar-title-text-size: 16px;
 }
 
 .color h2 {

@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    align-items: center;
+    --mat-form-field-container-vertical-padding: 8px;
+    --mat-form-field-container-height: 32px;
+}
+
+h3 {
+    margin:0;
+}

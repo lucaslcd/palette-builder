@@ -39,7 +39,7 @@ export class PresetState {
     }
 
     checkIfExists(palette: PaletteModel):boolean {
-        return !![...this.state().custom, ...this.state().default].find(el=>el.palette.name === palette.name)
+        return !![...this.state().custom].find(el=>el.palette.name === palette.name)
     }
 
     savePreset(palette: PaletteModel) {

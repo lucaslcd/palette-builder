@@ -11,11 +11,12 @@ import { PresetState } from '../../services/preset.state';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { PaletteSaveDialog } from '../palette-save-dialog/palette-save-dialog';
+import { TitleEdit } from '../title-edit/title-edit';
 
 @Component({
   selector: 'pbu-color-form',
   imports: [
-    MatSliderModule, MatInputModule, FormField, MatIcon, MatIconButton, MatButton, MatToolbar, MatCheckboxModule
+    MatSliderModule, MatInputModule, FormField, MatIcon, MatIconButton, MatButton, MatToolbar, MatCheckboxModule, TitleEdit
   ],
   templateUrl: './color-form.html',
   styleUrl: './color-form.css',
