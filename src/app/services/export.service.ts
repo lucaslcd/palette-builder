@@ -10,33 +10,51 @@ export class ExportService {
     export(paletteData: PaletteModel, exportData: ExportData) {
         switch (exportData.type) {
             case 'bitmap':
-                this._exportBitmap(paletteData, exportData)
-                break;
+                return this._exportBitmap(paletteData, exportData)
             case 'json':
-                this._exportJSON(paletteData)
-                break;
+                return this._exportJSON(paletteData)
         }
     }
 
-    private _exportBitmap(paletteData: PaletteModel, exportData: { format: BitmapFormat, disposition: BitmapDisposition }) {
-        const xUngroupedArr = new Array<{h:number, s: number}>();
+    private _exportBitmap(paletteData: PaletteModel, exportData: ExportData) {
+        switch(exportData.disposition) {
+            case 'sat-hua.lig':
+            case 'sat-hut.lig':
+                return this._exportXYBitmap(paletteData, exportData)
+        }
+    }
+
+    private _exportXYBitmap(paletteData: PaletteModel, exportData: ExportData) {
+        const xUngroupedArr = new Array<{ h: number, s: number }>();
         const ySet = new Set<number>();
-        
+        const colors = paletteData.colors;
+
         //1. create sets for hue, saturation and lights so that we can calculate dimensions
-        paletteData.colors.forEach(el=>{
-            el.shades.forEach(el2=>{
+        colors.forEach(el => {
+            el.shades.forEach(el2 => {
                 const hsl = [el.hue, el.saturation, el2];
-                xUngroupedArr.push({h:hsl[0], s: hsl[1]})
+                xUngroupedArr.push({ h: hsl[0], s: hsl[1] })
                 ySet.add(hsl[2])
             })
         })
         const xArr =
             Array.from(
                 new Set(
-                    xUngroupedArr.map(el=>JSON.stringify(el))
+                    xUngroupedArr.map(el => JSON.stringify(el))
                 )
-            ).map(el=>JSON.parse(el)) as Array<{h:number, s: number}>;
-        const yArr = Array.from(ySet).toSorted((a,b)=>b - a)
+            )
+            .map(el => JSON.parse(el))
+            .toSorted((a, b) => {
+                if (exportData.disposition === 'sat-hua.lig') {
+                    return a.h % 360 - b.h % 360
+                }
+                else {
+                    return Math.abs(a.h % 360 - 180) - Math.abs(b.h % 360 - 180)
+                }
+            })
+            .toSorted((a, b) => a.s - b.s) as Array<{h:number, s:number}>
+
+        const yArr = Array.from(ySet).toSorted((a, b) => b - a)
 
         //2. create the canvas
         const canvas = document.createElement('canvas')
@@ -57,22 +75,19 @@ export class ExportService {
         const cellWidth = Math.round(ctxWidth / xSize)
         const cellHeight = Math.round(ctxHeight / ySize)
 
-        xArr
-        .toSorted((a,b)=>{
-            if (exportData.disposition === 'sat-hua.lig') {
-                return a.h % 360 - b.h % 360
-            }
-            else {
-                return Math.abs(a.h % 360 - 180) - Math.abs(b.h % 360 - 180)
-            }
-        })
-        .toSorted((a,b)=>a.s-b.s)
-        .forEach(({h,s}, x)=>{
-            yArr.forEach((l, y)=>{
-                ctx.fillStyle = `hsl(${h}, ${s * 100}%, ${l * 100}%)`
-                console.log(`hsl(${h}, ${s * 100}, ${l * 100})`)
-                ctx.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight)
+        yArr.forEach((l, y) => {
+            let xOffset = 0, lastStyle = '';
+            xArr.forEach(({ h, s }, x) => {
+                //this code is designed to skip colors that are not in the palette currently
+                if (!exportData.onlyDrawPalette || colors.find(el => el.hue === h && el.shades.includes(l) && el.saturation === s)) {
+                    lastStyle = `hsl(${h}, ${s * 100}%, ${l * 100}%)`;
+                    ctx.fillStyle = lastStyle 
+                    ctx.fillRect(xOffset, y * cellHeight, (x * cellWidth) - xOffset + cellWidth, cellHeight)
+                    xOffset = (x + 1) * cellWidth
+                }
             })
+            ctx.fillStyle = lastStyle 
+            ctx.fillRect(xOffset, y * cellHeight, ctxWidth - xOffset, cellHeight)
         })
 
         const imageUrl = canvas.toDataURL("image/png");

@@ -25,6 +25,9 @@
                     <mat-option value="sat-hut.lig">Saturation > Hue (temperature) x Light</mat-option>
                 </mat-select>
             </mat-form-field>
+
+            <mat-label>Only draw palette:</mat-label>
+            <mat-checkbox [formField]="exportForm.export.onlyDrawPalette"></mat-checkbox>
         </div>
     }
 </mat-dialog-content>

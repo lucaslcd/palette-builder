@@ -5,6 +5,7 @@ import { PaletteModel } from '../../services/color.state';
 import { MatFormField, MatLabel, MatOption, MatSelect } from '@angular/material/select';
 import { ExportState } from '../../services/export.state';
 import { FormField } from '@angular/forms/signals';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'pbu-palette-export-dialog',
@@ -18,7 +19,8 @@ import { FormField } from '@angular/forms/signals';
     MatOption,
     MatFormField,
     FormField,
-    MatLabel
+    MatLabel,
+    MatCheckbox
   ],
   templateUrl: './palette-export-dialog.html',
   styleUrl: './palette-export-dialog.css',

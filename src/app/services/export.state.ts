@@ -9,6 +9,7 @@ export interface ExportData {
     type: ExportType,
     format: BitmapFormat,
     disposition: BitmapDisposition,
+    onlyDrawPalette: boolean
 }
 
 interface ExportStateModel {
@@ -22,7 +23,8 @@ export class ExportState {
         export: {
             type: 'bitmap',
             format: 'png',
-            disposition: 'sat-hua.lig'
+            disposition: 'sat-hua.lig',
+            onlyDrawPalette: true
         },
     })
 
