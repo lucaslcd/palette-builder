@@ -48,4 +48,16 @@ export class UtilsService {
     rgbToHex(red: number, green: number, blue: number) {
         return '#' + [red, green, blue].map(x => x.toString(16).padStart(2, '0')).join('');
     }
+
+    exportJsonAsText(jsonData:any, filename:string = 'data.txt') {
+        const jsonString = JSON.stringify(jsonData, null, 2);
+        const blob = new Blob([jsonString], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+        
+        URL.revokeObjectURL(link.href);
+    }
 }

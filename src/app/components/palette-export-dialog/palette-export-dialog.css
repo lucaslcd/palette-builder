@@ -1,0 +1,16 @@
+:host {
+    min-width:400px;
+    display:block;
+}
+
+.fieldset {
+    padding:2em 0 1em 0;
+}
+
+.fieldset + .fieldset {
+    border-top: 1px solid #ededed;
+}
+
+.fieldset > mat-form-field {
+    display:block;
+}

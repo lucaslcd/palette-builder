@@ -197,16 +197,16 @@ export class ColorState {
         const inc = increment()
 
         return {
-            name: data.name || `Color ${inc}`,
-            hue: data.hue || 15, 
-            hueDiff: data.hueDiff || 0,
-            lockHue: data.lockHue || !first,
-            saturation: data.saturation || 0.52,
-            lockSaturation: data.lockSaturation || !first,
-            shades: data.shades || [
+            name: data.name ?? `Color ${inc}`,
+            hue: data.hue ?? 15, 
+            hueDiff: data.hueDiff ?? 0,
+            lockHue: data.lockHue ?? !first,
+            saturation: data.saturation ?? 0.52,
+            lockSaturation: data.lockSaturation ?? !first,
+            shades: data.shades ?? [
                 0.23, 0.43, 0.63, 0.83
             ],
-            lockShade: data.lockShade || !first
+            lockShade: data.lockShade ?? !first
         }
     }
 }
