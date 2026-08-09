@@ -38,3 +38,26 @@ pbu-header {
 pbu-color-wheel {
     margin: 2em 0;
 }
+
+@media screen and (max-width: 768px) {
+    :host {
+        height:auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: min-content min-content 1fr;
+        grid-template-areas: "title" "left" "right"
+    }
+
+    pbu-header {
+        position:sticky;
+        top:0;
+        z-index: 10;
+    }
+
+    pbu-color-wheel {
+        margin: 2em auto;
+    }
+
+    .col-colors {
+        padding: 1em;
+    }
+}
